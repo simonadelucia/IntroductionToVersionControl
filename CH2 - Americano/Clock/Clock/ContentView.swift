@@ -1,45 +1,60 @@
-//
-//  ContentView.swift
-//  Clock
-//
-//  Created by Simona De Lucia on 06/11/25.
-//
+
 
 import SwiftUI
 
-struct DigitView: View {
+struct ContentView: View {
     
-    //MARK:- PROPERTIES
+    @State private var Ore: Int = 0 //1-2-3-34
+    @State private var Minuti: Int = 0
+    @State private var Secondi: Int = 0
     
-    var time: Int
-    var place: String
+    var place: String = "ciola"//asdkjaskdja
     
-    //MARK:- BODY
-
     var body: some View {
-        VStack(alignment: .center, spacing: 3) {
-            Text("\(time)")
-                .font(.system(.title))
-                .fontWeight(.semibold)
-            
-            Text(place)
-                .font(.headline)
-                .fontWeight(.semibold)
-                .foregroundColor(.gray)
+        NavigationStack{
+            NavigationView{
+                
+                VStack{
+                    
+                    HStack {
+                        
+                        Picker("ORE", selection: $Ore){
+                            ForEach(0..<24) { hour in
+                                Text("\(hour) ore").tag(hour)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        
+                        Picker("ORE", selection: $Minuti){
+                            ForEach(0..<60) { min in
+                                Text("\(min) minuti").tag(min)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        
+                        Picker("ORE", selection: $Secondi){
+                            ForEach(0..<60) { sec in
+                                Text("\(sec) secondi").tag(sec)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        
+                    }
+                    
+                    Spacer()
+                }
+                
+                
+                
+            }
+            .navigationTitle(Text("Timers"))
         }
-    }
-}
-
-    //MARK:- PREVIEW
-
-struct DigitView_Previews: PreviewProvider {
-    static var previews: some View {
-        Digitview(time: 20, place: "minutes")
-            .previewLayout(.sizeThatFits)
-            .padding()
+        
     }
 }
 
 #Preview {
-    DigitView()
+    ContentView()
 }
+
+
